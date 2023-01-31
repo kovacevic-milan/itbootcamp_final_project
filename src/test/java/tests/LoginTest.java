@@ -1,6 +1,8 @@
 package tests;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -59,8 +61,8 @@ public class LoginTest extends BaseTest {
     @Test
     public void isThereHomeInURLWhenLoggedIn() throws InterruptedException {
         loginPage.correctLogin();
+        driverWait.until(ExpectedConditions.urlContains("/home"));
         Assert.assertTrue(driver.getCurrentUrl().contains("/home"));
-        Thread.sleep(10000);
     }
 
     @Test
@@ -71,10 +73,9 @@ public class LoginTest extends BaseTest {
         loginPage.logout();
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
         Thread.sleep(5000);
-        
+        driver.get("https://vue-demo.daniel-avellaneda.com/home");
+        Assert.assertTrue(driver.getCurrentUrl().endsWith("/login"));
     }
-
-
 
 
 }
