@@ -1,8 +1,10 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
@@ -37,7 +39,8 @@ public class LoginPage extends BasePage {
         enterLoginPageButton.click();
     }
 
-    public void login(String username, String password) {
+    public void login(String username, String password) { //malo cekamo na ovo, sporije radi debugger
+        driverWait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
         this.emailField.clear();
         this.emailField.sendKeys(username);
 
