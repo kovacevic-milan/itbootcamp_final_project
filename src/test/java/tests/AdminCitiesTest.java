@@ -69,10 +69,4 @@ public class AdminCitiesTest extends BaseTest {
        // adminCitiesPage.logoutAdminCities();
     }
 
-    @AfterMethod
-    public void afterMethod(){
-        adminCitiesPage.logoutAdminCities();
-    }
-
-
 }

@@ -18,7 +18,8 @@ public class LoginPage extends BasePage {
     @FindBy(id = "password")
     private WebElement passwordField;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")
+    // to se sad pojavilo, cudno..
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")
     private WebElement loginButton;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")
