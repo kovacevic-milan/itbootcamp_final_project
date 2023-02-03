@@ -44,10 +44,18 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(className = "text-left")
     private WebElement searchResults;
 
-    @FindBy(className = "v-btn__content")
+    @FindBy(xpath = "//*[@id=\"delete\"]")
     private WebElement deleteButton;
 
+    @FindBy(xpath = "/html/body/div/div[3]/div/div/div[2]/button[2]/span")
+    private WebElement confirmDelete;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
+            private WebElement cityDeletedMessage;
+
     String cityName = faker.address().city();
+
+    String city = "Kisach";
 
 
     public AdminCitiesPage(WebDriver driver, WebDriverWait driverWait) {
@@ -74,7 +82,7 @@ public class AdminCitiesPage extends BasePage {
     public void createNewCityMethod() {
         this.createNewCityButton.click();
         this.nameOfTheCityInput.click();
-        this.nameOfTheCityInput.sendKeys(cityName);
+        this.nameOfTheCityInput.sendKeys(city);
         this.confirmCreateButton.click();
     }
 
@@ -83,7 +91,7 @@ public class AdminCitiesPage extends BasePage {
         this.editTextField.click();
         this.editTextField.sendKeys(Keys.CONTROL + "a");
         this.editTextField.sendKeys(Keys.DELETE);
-        this.editTextField.sendKeys(cityName + " - edited");
+        this.editTextField.sendKeys(city + " - edited");
         saveEditButton.click();
     }
 
@@ -94,7 +102,7 @@ public class AdminCitiesPage extends BasePage {
 
     public void searchForCities() {
         this.inputSearch.click();
-        this.inputSearch.sendKeys(cityName + " - edited");
+        this.inputSearch.sendKeys(city + " - edited");
 
     }
 
@@ -103,7 +111,12 @@ public class AdminCitiesPage extends BasePage {
     }
 
     public void deleteCities() {
+        deleteButton.click();
+        confirmDelete.click();
+    }
 
+    public boolean isCityDeletedMessageVisible(){
+        return cityDeletedMessage.isDisplayed();
     }
 
 }

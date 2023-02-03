@@ -70,6 +70,7 @@ public class LoginPage extends BasePage {
         String validEmail = "admin@admin.com";
         String validPassword = "12345";
         login(validEmail, validPassword);
+        loginButton.click();
     }
 
     public boolean isLogoutButtonDisplayed() {
