@@ -14,16 +14,19 @@ public class AdminCitiesTest extends BaseTest {
     @Override
     public void beforeMethod() {
         super.beforeMethod();
-        loginPage.visitTheLoginPage();
-        loginPage.correctLogin();
-        adminCitiesPage.enterAdminCitiesPage();
+        // radi iskljucivo kada sve ove beforeMethode ubacim direktno u test
+       // loginPage.visitTheLoginPage();
+       // loginPage.correctLogin();
+       // adminCitiesPage.enterAdminCitiesPage();
         //driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
 
     }
 
-    @Test (priority = 1)
+    @Test //(priority = 1)
     public void urlAndLogoutButtonTest() {
-        adminCitiesPage.enterAdminCitiesPage();
+        loginPage.visitTheLoginPage();
+        loginPage.correctLogin();
+       adminCitiesPage.enterAdminCitiesPage();
         driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
         Assert.assertTrue(driver.getCurrentUrl().contains("/admin/cities"));
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]")));
@@ -31,8 +34,10 @@ public class AdminCitiesTest extends BaseTest {
         //adminCitiesPage.logoutAdminCities();
     }
 
-    @Test (priority = 2)
+    @Test //(priority = 2)
     public void isMessageDisplayedWhenTownCrated() throws InterruptedException {
+        loginPage.visitTheLoginPage();
+        loginPage.correctLogin();
         adminCitiesPage.enterAdminCitiesPage();
         adminCitiesPage.createNewCityMethod();
         Assert.assertTrue(adminCitiesPage.isMessageTownCreatedDisplayed());
@@ -40,16 +45,20 @@ public class AdminCitiesTest extends BaseTest {
         //adminCitiesPage.logoutAdminCities();
     }
 
-    @Test (priority = 3)
+    @Test //(priority = 3)
     public void isMessageDisplayedWhenTownEdited() {
+        loginPage.visitTheLoginPage();
+        loginPage.correctLogin();
         adminCitiesPage.enterAdminCitiesPage();
         adminCitiesPage.editCreatedCityMethod();
         Assert.assertTrue(adminCitiesPage.isEditSavedMessageDisplayed());
         //adminCitiesPage.logoutAdminCities();
     }
 
-    @Test (priority = 4)
+    @Test //(priority = 4)
     public void searchCitiesTest() {
+        loginPage.visitTheLoginPage();
+        loginPage.correctLogin();
         adminCitiesPage.enterAdminCitiesPage();
         adminCitiesPage.searchForCities();
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("text-left")));
@@ -60,6 +69,8 @@ public class AdminCitiesTest extends BaseTest {
 
     @Test (priority = 5)
     public void isCitiDeleted() {
+        loginPage.visitTheLoginPage();
+        loginPage.correctLogin();
         adminCitiesPage.enterAdminCitiesPage();
         adminCitiesPage.searchForCities();
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("text-left")));

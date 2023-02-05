@@ -24,6 +24,7 @@ public abstract class BaseTest {
     protected AdminCitiesPage adminCitiesPage;
     protected AuthRoutesPage authRoutesPage;
     protected LocalePage localePage;
+    protected ProfilePage profilePage;
 
     @BeforeClass
     public void beforeClass() {
@@ -36,6 +37,7 @@ public abstract class BaseTest {
         adminCitiesPage = new AdminCitiesPage(driver, driverWait);
         authRoutesPage = new AuthRoutesPage(driver, driverWait);
         localePage = new LocalePage(driver, driverWait);
+        profilePage = new ProfilePage(driver, driverWait);
 
 
     }

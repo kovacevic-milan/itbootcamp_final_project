@@ -13,16 +13,18 @@ public class SignupTest extends BaseTest {
     @Override
     public void beforeMethod() {
         super.beforeMethod();
-        signupPage.visitTheSignUpPage();
+       // signupPage.visitTheSignUpPage();
     }
 
     @Test
     public void isSignupPresentedInUrl() {
+        signupPage.visitTheSignUpPage();
         Assert.assertTrue(driver.getCurrentUrl().contains("/signup"));
     }
 
     @Test
     public void isSignUpFieldTypeCorrect() {
+        signupPage.visitTheSignUpPage();
         String emailTypeExpected = "email";
         String passwordTypeExpected = "password";
         String confirmPasswordTypeExpected = "password";
@@ -36,17 +38,19 @@ public class SignupTest extends BaseTest {
         Assert.assertEquals(confirmPasswordTypeActual, confirmPasswordTypeExpected);
     }
 
-    @Test
+    //ovaj test radi samo ssamostalno, i to zbog afterMethoda u BaseTest
+    @Test (priority = 1)
     public void userAlreadyExist() {
+        signupPage.visitTheSignUpPage();
         signupPage.existingUserSignup();
         Assert.assertTrue(signupPage.isErrorEmailDisplayed());
         Assert.assertTrue(driver.getCurrentUrl().contains("/signup"));
     }
 
 
-    //problemi. ovde sam stao
     @Test
     public void isVerifyMessageDisplayedTest() {
+        signupPage.visitTheSignUpPage();
         signupPage.validSignUp();
         driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1]")));
         Assert.assertTrue(signupPage.isVerifyMessageDisplayed());

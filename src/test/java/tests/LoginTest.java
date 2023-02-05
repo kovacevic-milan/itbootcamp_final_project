@@ -19,16 +19,18 @@ public class LoginTest extends BaseTest {
     @Override
     public void beforeMethod() {
         super.beforeMethod();
-        loginPage.visitTheLoginPage();
+       // loginPage.visitTheLoginPage();
     }
 
     @Test
     public void isLoginPresentedInUrl() {
+        loginPage.visitTheLoginPage();
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
     @Test
     public void isFieldTypeCorrect() {
+        loginPage.visitTheLoginPage();
         String emailTypeExpected = "email";
         String passwordTypeExpected = "password";
 
@@ -41,6 +43,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void isErrorDisplayedWhenUserDoesNotExist() {
+        loginPage.visitTheLoginPage();
         String email = faker.internet().emailAddress();
         String password = faker.internet().password();
         loginPage.login(email, password);
@@ -50,6 +53,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void isErrorDisplayedWhenPasswordIsWrong() {
+        loginPage.visitTheLoginPage();
         String validEmail = "admin@admin.com";
         String password = faker.internet().password();
         loginPage.login(validEmail, password);
@@ -57,9 +61,10 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
     }
 
-    // nekad radi, nekada ne - mozda fali waiter
+
     @Test
-    public void isThereHomeInURLWhenLoggedIn() throws InterruptedException {
+    public void isThereHomeInURLWhenLoggedIn() {
+        loginPage.visitTheLoginPage();
         loginPage.correctLogin();
         driverWait.until(ExpectedConditions.urlContains("/home"));
         Assert.assertTrue(driver.getCurrentUrl().contains("/home"));
@@ -67,6 +72,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void isThereLogoutButton() throws InterruptedException {
+        loginPage.visitTheLoginPage();
         loginPage.correctLogin();
         Assert.assertTrue(loginPage.isLogoutButtonDisplayed());
         Thread.sleep(5000);
