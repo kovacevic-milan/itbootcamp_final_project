@@ -24,7 +24,7 @@ public class ProfileTest extends BaseTest {
     public void editAccountTest() {
         String name = faker.name().fullName();
         String phone = faker.phoneNumber().cellPhone();
-        String city = "Addieville";
+        String city = "Barranquilla";
         String country = faker.country().name();
         String twitter = "https://twitter.com/" + faker.name().firstName().toLowerCase();
         String github = "https://github.com/" + faker.name().firstName().toLowerCase();

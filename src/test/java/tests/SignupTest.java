@@ -13,18 +13,18 @@ public class SignupTest extends BaseTest {
     @Override
     public void beforeMethod() {
         super.beforeMethod();
-       // signupPage.visitTheSignUpPage();
+        signupPage.visitTheSignUpPage();
     }
 
-    @Test
+    @Test (priority = 1)
     public void isSignupPresentedInUrl() {
-        signupPage.visitTheSignUpPage();
+//        signupPage.visitTheSignUpPage();
         Assert.assertTrue(driver.getCurrentUrl().contains("/signup"));
     }
 
-    @Test
+    @Test (priority = 2)
     public void isSignUpFieldTypeCorrect() {
-        signupPage.visitTheSignUpPage();
+
         String emailTypeExpected = "email";
         String passwordTypeExpected = "password";
         String confirmPasswordTypeExpected = "password";
@@ -39,20 +39,28 @@ public class SignupTest extends BaseTest {
     }
 
     //ovaj test radi samo ssamostalno, i to zbog afterMethoda u BaseTest
-    @Test (priority = 4)
+    @Test (priority = 3)
     public void userAlreadyExist() {
-        signupPage.visitTheSignUpPage();
+
+//        signupPage.visitTheSignUpPage();
         signupPage.existingUserSignup();
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]")));
+
         Assert.assertTrue(signupPage.isErrorEmailDisplayed());
         Assert.assertTrue(driver.getCurrentUrl().contains("/signup"));
     }
 
 
-    @Test
-    public void isVerifyMessageDisplayedTest() {
-        signupPage.visitTheSignUpPage();
+    @Test (priority = 4)
+    public void isVerifyMessageDisplayedTest() throws InterruptedException {
+
+//        signupPage.visitTheSignUpPage();
         signupPage.validSignUp();
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div")));
+        //driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[1]")));
+        Thread.sleep(3000);
         Assert.assertTrue(signupPage.isVerifyMessageDisplayed());
+
+
+
     }
 }

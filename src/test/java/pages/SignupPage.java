@@ -31,7 +31,7 @@ public class SignupPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]")
     private WebElement emailAlreadyExistError;
 
-    @FindBy (xpath = "//*[@id=\"app\"]/div[4]/div/div")
+    @FindBy (xpath = "/html/body/div/div[4]/div/div/div[1]")
     private WebElement verifyMessage;
 
 

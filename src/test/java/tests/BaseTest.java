@@ -25,6 +25,7 @@ public abstract class BaseTest {
     protected AuthRoutesPage authRoutesPage;
     protected LocalePage localePage;
     protected ProfilePage profilePage;
+    protected HomePage homePage;
 
     @BeforeClass
     public void beforeClass() {
@@ -38,6 +39,7 @@ public abstract class BaseTest {
         authRoutesPage = new AuthRoutesPage(driver, driverWait);
         localePage = new LocalePage(driver, driverWait);
         profilePage = new ProfilePage(driver, driverWait);
+        homePage = new HomePage(driver, driverWait);
 
 
     }
@@ -47,13 +49,13 @@ public abstract class BaseTest {
         driver.get("https://vue-demo.daniel-avellaneda.com/");
     }
 
-    @AfterMethod
-    public void afterMethod(){
-        List<WebElement> elements = driver.findElements(By.className(("btnLogout")));
-        if (!elements.isEmpty()) {
-            elements.get(0).click();
-        }
-    }
+//    @AfterMethod
+//    public void afterMethod(){
+//        List<WebElement> elements = driver.findElements(By.className(("btnLogout")));
+//        if (!elements.isEmpty()) {
+//            elements.get(0).click();
+//        }
+//    }
 
     @AfterClass
     public void afterClass() {

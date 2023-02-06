@@ -68,6 +68,7 @@ public class LoginTest extends BaseTest {
         loginPage.correctLogin();
         driverWait.until(ExpectedConditions.urlContains("/home"));
         Assert.assertTrue(driver.getCurrentUrl().contains("/home"));
+        loginPage.logout();
     }
 
     @Test

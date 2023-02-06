@@ -15,9 +15,9 @@ public class AdminCitiesTest extends BaseTest {
     public void beforeMethod() {
         super.beforeMethod();
         // radi iskljucivo kada sve ove beforeMethode ubacim direktno u test
-       // loginPage.visitTheLoginPage();
-       // loginPage.correctLogin();
-       // adminCitiesPage.enterAdminCitiesPage();
+        // loginPage.visitTheLoginPage();
+        // loginPage.correctLogin();
+        // adminCitiesPage.enterAdminCitiesPage();
         //driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
 
     }
@@ -26,7 +26,7 @@ public class AdminCitiesTest extends BaseTest {
     public void urlAndLogoutButtonTest() {
         loginPage.visitTheLoginPage();
         loginPage.correctLogin();
-       adminCitiesPage.enterAdminCitiesPage();
+        adminCitiesPage.enterAdminCitiesPage();
         driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
         Assert.assertTrue(driver.getCurrentUrl().contains("/admin/cities"));
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]")));
@@ -40,9 +40,11 @@ public class AdminCitiesTest extends BaseTest {
         loginPage.correctLogin();
         adminCitiesPage.enterAdminCitiesPage();
         adminCitiesPage.createNewCityMethod();
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
         Assert.assertTrue(adminCitiesPage.isMessageTownCreatedDisplayed());
         Thread.sleep(3000);
         //adminCitiesPage.logoutAdminCities();
+
     }
 
     @Test //(priority = 3)
@@ -67,7 +69,7 @@ public class AdminCitiesTest extends BaseTest {
 
     }
 
-    @Test (priority = 5)
+    @Test(priority = 5)
     public void isCitiDeleted() {
         loginPage.visitTheLoginPage();
         loginPage.correctLogin();
@@ -77,7 +79,12 @@ public class AdminCitiesTest extends BaseTest {
         adminCitiesPage.deleteCities();
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
         Assert.assertTrue(adminCitiesPage.isCityDeletedMessageVisible());
-       // adminCitiesPage.logoutAdminCities();
+        // adminCitiesPage.logoutAdminCities();
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        adminCitiesPage.logoutAdminCities();
     }
 
 }
