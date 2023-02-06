@@ -39,7 +39,7 @@ public class SignupTest extends BaseTest {
     }
 
     //ovaj test radi samo ssamostalno, i to zbog afterMethoda u BaseTest
-    @Test (priority = 1)
+    @Test (priority = 4)
     public void userAlreadyExist() {
         signupPage.visitTheSignUpPage();
         signupPage.existingUserSignup();
@@ -52,7 +52,7 @@ public class SignupTest extends BaseTest {
     public void isVerifyMessageDisplayedTest() {
         signupPage.visitTheSignUpPage();
         signupPage.validSignUp();
-        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1]")));
+        driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div")));
         Assert.assertTrue(signupPage.isVerifyMessageDisplayed());
     }
 }

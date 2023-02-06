@@ -82,58 +82,89 @@ public class ProfilePage extends BasePage {
         closeVerifyMessage.click();
     }
 
-    public void editName() {
+
+    public void editName(String name) {
         nameEditField.click();
         nameEditField.sendKeys(Keys.CONTROL + "a");
         nameEditField.sendKeys(Keys.ENTER);
-        nameEditField.sendKeys(faker.name().fullName());
+        nameEditField.sendKeys(name);
+
     }
 
-    public void editPhone() {
+    public void editPhone(String phone) {
         phoneEditField.click();
         phoneEditField.clear();
-        phoneEditField.sendKeys(faker.phoneNumber().cellPhone());
+        phoneEditField.sendKeys(phone);
 
     }
 
-    public void editCity() {
+    public void editCity(String city) {
         cityEditField.click();
-       cityEditField.sendKeys(Keys.CONTROL + "a");
-       cityEditField.sendKeys(Keys.DELETE);
-       cityEditField.sendKeys(Keys.ARROW_DOWN);
-       cityEditField.sendKeys(Keys.ENTER);
+        cityEditField.sendKeys(Keys.CONTROL + "a");
+        cityEditField.sendKeys(Keys.DELETE);
+        cityEditField.sendKeys(city);
+        cityEditField.sendKeys(Keys.ENTER);
     }
 
-    public void editCountry(){
+    public void editCountry(String country) {
         countryField.click();
-        countryField.sendKeys(faker.country().name());
+        countryField.sendKeys(country);
     }
 
-    public void editTwitter(){
+    public void editTwitter(String twitter) {
         twitterField.click();
-        twitterField.sendKeys("https://twitter.com/randlink?lang=en");
+        twitterField.sendKeys(twitter);
+
+
     }
 
-    public void editGitHub(){
+    public void editGitHub(String github) {
         gitHubField.click();
-        gitHubField.sendKeys("https://github.com/topics/random");
+        gitHubField.sendKeys(github);
+
     }
 
-    public boolean isMessageVisible(){
+    public boolean isMessageVisible() {
         return messageSuccess.isDisplayed();
     }
 
-    public void clickSave(){
+    public void clickSave() {
         saveButton.click();
     }
 
-    public void editProfile(){
-        editName();
-        editPhone();
-        editCity();
-        editCountry();
-        editTwitter();
-        editGitHub();
+    public void editProfile(String name, String phone, String country, String twitter, String github, String city) {
+        editName(name);
+        editPhone(phone);
+        editCity(city);
+        editCountry(country);
+        editTwitter(twitter);
+        editGitHub(github);
         clickSave();
     }
+
+
+    public String getNameValue() {
+        return nameEditField.getAttribute("value");
+    }
+
+    public String getPhoneValue() {
+        return phoneEditField.getAttribute("value");
+    }
+
+    public String getCityValue() {
+        return cityEditField.getAttribute("value");
+    }
+
+    public String getCoutryValue() {
+        return countryField.getAttribute("value");
+    }
+
+    public String getTwitterValue(){
+        return twitterField.getAttribute("value");
+    }
+
+    public String getGithubValue(){
+        return gitHubField.getAttribute("value");
+    }
+
 }
