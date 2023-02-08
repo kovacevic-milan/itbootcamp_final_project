@@ -4,10 +4,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.LoginPage;
+import pages.SignupPage;
 
 public class SignupTest extends BaseTest {
+
+    private SignupPage signupPage;
+
+    @BeforeClass
+    @Override
+    public void beforeClass() {
+        super.beforeClass();
+        signupPage = new SignupPage(driver, driverWait);
+    }
 
     @BeforeMethod
     @Override
@@ -16,13 +28,13 @@ public class SignupTest extends BaseTest {
         signupPage.visitTheSignUpPage();
     }
 
-    @Test (priority = 1)
+    @Test(priority = 1)
     public void isSignupPresentedInUrl() {
 //        signupPage.visitTheSignUpPage();
         Assert.assertTrue(driver.getCurrentUrl().contains("/signup"));
     }
 
-    @Test (priority = 2)
+    @Test(priority = 2)
     public void isSignUpFieldTypeCorrect() {
 
         String emailTypeExpected = "email";
@@ -38,8 +50,7 @@ public class SignupTest extends BaseTest {
         Assert.assertEquals(confirmPasswordTypeActual, confirmPasswordTypeExpected);
     }
 
-    //ovaj test radi samo ssamostalno, i to zbog afterMethoda u BaseTest
-    @Test (priority = 3)
+    @Test(priority = 3)
     public void userAlreadyExist() {
 
 //        signupPage.visitTheSignUpPage();
@@ -51,7 +62,7 @@ public class SignupTest extends BaseTest {
     }
 
 
-    @Test (priority = 4)
+    @Test(priority = 4)
     public void isVerifyMessageDisplayedTest() throws InterruptedException {
 
 //        signupPage.visitTheSignUpPage();
@@ -59,7 +70,6 @@ public class SignupTest extends BaseTest {
         //driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[1]")));
         Thread.sleep(3000);
         Assert.assertTrue(signupPage.isVerifyMessageDisplayed());
-
 
 
     }

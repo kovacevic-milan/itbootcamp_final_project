@@ -7,22 +7,29 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.AdminCitiesPage;
+import pages.LoginPage;
 
 public class AdminCitiesTest extends BaseTest {
+
+    private LoginPage loginPage;
+    private AdminCitiesPage adminCitiesPage;
+
+    @BeforeClass
+    @Override
+    public void beforeClass() {
+        super.beforeClass();
+        loginPage = new LoginPage(driver, driverWait);
+        adminCitiesPage = new AdminCitiesPage(driver, driverWait);
+    }
 
     @BeforeMethod
     @Override
     public void beforeMethod() {
         super.beforeMethod();
-        // radi iskljucivo kada sve ove beforeMethode ubacim direktno u test
-        // loginPage.visitTheLoginPage();
-        // loginPage.correctLogin();
-        // adminCitiesPage.enterAdminCitiesPage();
-        //driverWait.until(ExpectedConditions.urlContains("/admin/cities"));
-
     }
 
-    @Test //(priority = 1)
+    @Test
     public void urlAndLogoutButtonTest() {
         loginPage.visitTheLoginPage();
         loginPage.correctLogin();
@@ -31,10 +38,10 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(driver.getCurrentUrl().contains("/admin/cities"));
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/button[2]")));
         Assert.assertTrue(adminCitiesPage.logoutButtonIsVisible());
-        //adminCitiesPage.logoutAdminCities();
+
     }
 
-    @Test //(priority = 2)
+    @Test
     public void isMessageDisplayedWhenTownCrated() throws InterruptedException {
         loginPage.visitTheLoginPage();
         loginPage.correctLogin();
@@ -42,22 +49,18 @@ public class AdminCitiesTest extends BaseTest {
         adminCitiesPage.createNewCityMethod();
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
         Assert.assertTrue(adminCitiesPage.isMessageTownCreatedDisplayed());
-        Thread.sleep(3000);
-        //adminCitiesPage.logoutAdminCities();
-
     }
 
-    @Test //(priority = 3)
+    @Test
     public void isMessageDisplayedWhenTownEdited() {
         loginPage.visitTheLoginPage();
         loginPage.correctLogin();
         adminCitiesPage.enterAdminCitiesPage();
         adminCitiesPage.editCreatedCityMethod();
         Assert.assertTrue(adminCitiesPage.isEditSavedMessageDisplayed());
-        //adminCitiesPage.logoutAdminCities();
     }
 
-    @Test //(priority = 4)
+    @Test
     public void searchCitiesTest() {
         loginPage.visitTheLoginPage();
         loginPage.correctLogin();
@@ -65,8 +68,6 @@ public class AdminCitiesTest extends BaseTest {
         adminCitiesPage.searchForCities();
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("text-left")));
         Assert.assertTrue(adminCitiesPage.isSearchedCityVisible());
-        //adminCitiesPage.logoutAdminCities();
-
     }
 
     @Test(priority = 5)
@@ -79,7 +80,6 @@ public class AdminCitiesTest extends BaseTest {
         adminCitiesPage.deleteCities();
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
         Assert.assertTrue(adminCitiesPage.isCityDeletedMessageVisible());
-        // adminCitiesPage.logoutAdminCities();
     }
 
     @AfterMethod

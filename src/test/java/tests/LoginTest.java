@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -12,14 +13,23 @@ import java.time.Duration;
 
 public class LoginTest extends BaseTest {
 
+    private LoginPage loginPage;
+
     Faker faker = new Faker();
+
+    @BeforeClass
+    @Override
+    public void beforeClass(){
+        super.beforeClass();
+        loginPage = new LoginPage(driver, driverWait);
+    }
 
 
     @BeforeMethod
     @Override
     public void beforeMethod() {
         super.beforeMethod();
-       // loginPage.visitTheLoginPage();
+        // loginPage.visitTheLoginPage();
     }
 
     @Test

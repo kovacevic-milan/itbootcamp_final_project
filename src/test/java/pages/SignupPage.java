@@ -13,7 +13,7 @@ public class SignupPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[4]")
     private WebElement enterSignupScreen;
 
-    @FindBy (id = "name")
+    @FindBy(id = "name")
     private WebElement name;
 
     @FindBy(id = "email")
@@ -25,13 +25,13 @@ public class SignupPage extends BasePage {
     @FindBy(id = "confirmPassword")
     private WebElement confirmPasswordSignUpField;
 
-    @FindBy (xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button")
     private WebElement signUpButton;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]")
     private WebElement emailAlreadyExistError;
 
-    @FindBy (xpath = "/html/body/div/div[4]/div/div/div[1]")
+    @FindBy(xpath = "/html/body/div/div[4]/div/div/div[1]")
     private WebElement verifyMessage;
 
 
@@ -55,7 +55,7 @@ public class SignupPage extends BasePage {
         return confirmPasswordSignUpField.getAttribute("type");
     }
 
-    public void existingUserSignup(){
+    public void existingUserSignup() {
         this.name.sendKeys("Test Test");
         this.emailSignUpField.sendKeys("admin@admin.com");
         this.passwordSignUpField.sendKeys("123654");
@@ -67,11 +67,11 @@ public class SignupPage extends BasePage {
         return emailAlreadyExistError.isDisplayed();
     }
 
-    public boolean isVerifyMessageDisplayed(){
+    public boolean isVerifyMessageDisplayed() {
         return verifyMessage.isDisplayed();
     }
 
-    public void validSignUp (){
+    public void validSignUp() {
         this.name.sendKeys(faker.name().fullName());
         this.emailSignUpField.sendKeys(faker.internet().emailAddress());
         this.passwordSignUpField.sendKeys("milan1234");

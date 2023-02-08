@@ -51,10 +51,10 @@ public class AdminCitiesPage extends BasePage {
     private WebElement confirmDelete;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
-            private WebElement cityDeletedMessage;
+    private WebElement cityDeletedMessage;
+
 
     String cityName = faker.address().city();
-
     String city = "Kisach";
 
 
@@ -115,7 +115,7 @@ public class AdminCitiesPage extends BasePage {
         confirmDelete.click();
     }
 
-    public boolean isCityDeletedMessageVisible(){
+    public boolean isCityDeletedMessageVisible() {
         return cityDeletedMessage.isDisplayed();
     }
 

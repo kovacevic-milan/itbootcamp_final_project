@@ -19,13 +19,6 @@ public abstract class BaseTest {
 
     protected WebDriver driver;
     protected WebDriverWait driverWait;
-    protected LoginPage loginPage;
-    protected SignupPage signupPage;
-    protected AdminCitiesPage adminCitiesPage;
-    protected AuthRoutesPage authRoutesPage;
-    protected LocalePage localePage;
-    protected ProfilePage profilePage;
-    protected HomePage homePage;
 
     @BeforeClass
     public void beforeClass() {
@@ -33,15 +26,6 @@ public abstract class BaseTest {
         this.driver = new ChromeDriver();
         this.driverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        loginPage = new LoginPage(driver, driverWait);
-        signupPage = new SignupPage(driver, driverWait);
-        adminCitiesPage = new AdminCitiesPage(driver, driverWait);
-        authRoutesPage = new AuthRoutesPage(driver, driverWait);
-        localePage = new LocalePage(driver, driverWait);
-        profilePage = new ProfilePage(driver, driverWait);
-        homePage = new HomePage(driver, driverWait);
-
-
     }
 
     @BeforeMethod
@@ -49,13 +33,6 @@ public abstract class BaseTest {
         driver.get("https://vue-demo.daniel-avellaneda.com/");
     }
 
-//    @AfterMethod
-//    public void afterMethod(){
-//        List<WebElement> elements = driver.findElements(By.className(("btnLogout")));
-//        if (!elements.isEmpty()) {
-//            elements.get(0).click();
-//        }
-//    }
 
     @AfterClass
     public void afterClass() {

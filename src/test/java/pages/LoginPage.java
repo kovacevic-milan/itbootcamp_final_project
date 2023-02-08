@@ -18,7 +18,6 @@ public class LoginPage extends BasePage {
     @FindBy(id = "password")
     private WebElement passwordField;
 
-    // to se sad pojavilo, cudno..
     @FindBy(xpath = "//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")
     private WebElement loginButton;
 
@@ -30,7 +29,6 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")
     private WebElement logoutButton;
-
 
     public LoginPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
@@ -63,11 +61,11 @@ public class LoginPage extends BasePage {
         return emailField.getAttribute("type");
     }
 
-    public String getPasswordFieldType(){
+    public String getPasswordFieldType() {
         return passwordField.getAttribute("type");
     }
 
-    public void correctLogin(){
+    public void correctLogin() {
         String validEmail = "admin@admin.com";
         String validPassword = "12345";
         login(validEmail, validPassword);
@@ -78,7 +76,7 @@ public class LoginPage extends BasePage {
         return logoutButton.isDisplayed();
     }
 
-    public void logout(){
+    public void logout() {
         logoutButton.click();
     }
 }

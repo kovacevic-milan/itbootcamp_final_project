@@ -6,8 +6,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProfilePage extends BasePage {
@@ -78,7 +76,6 @@ public class ProfilePage extends BasePage {
         this.passwordSignUpField.sendKeys("sifra");
         this.confirmPasswordSignUpField.sendKeys("sifra");
         this.signUpButton.click();
-        //driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1")));
         closeVerifyMessage.click();
     }
 
@@ -103,7 +100,7 @@ public class ProfilePage extends BasePage {
         cityEditField.sendKeys(Keys.CONTROL + "a");
         cityEditField.sendKeys(Keys.DELETE);
         cityEditField.sendKeys(city);
-        cityEditField.sendKeys(Keys.ENTER);
+        cityEditField.sendKeys(Keys.TAB);
     }
 
     public void editCountry(String country) {
@@ -114,14 +111,11 @@ public class ProfilePage extends BasePage {
     public void editTwitter(String twitter) {
         twitterField.click();
         twitterField.sendKeys(twitter);
-
-
     }
 
     public void editGitHub(String github) {
         gitHubField.click();
         gitHubField.sendKeys(github);
-
     }
 
     public boolean isMessageVisible() {
@@ -155,7 +149,7 @@ public class ProfilePage extends BasePage {
         return cityEditField.getAttribute("value");
     }
 
-    public String getCoutryValue() {
+    public String getCountryValue() {
         return countryField.getAttribute("value");
     }
 
